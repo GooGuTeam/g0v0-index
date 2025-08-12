@@ -48,6 +48,18 @@ const STABLE_URL = import.meta.env.PUBLIC_STABLE_URL ?? 'https://stable.example.
         </p>
       </div>
       <div class="relative">
+        <!-- Floating lazer client preview image (desktop only) -->
+        <img
+          src="/image/lazer.png"
+          alt="osu!lazer 预览"
+          width="420"
+          height="260"
+          draggable="false"
+          decoding="async"
+          loading="lazy"
+          class="hidden md:block absolute -top-105 -right-1 w-[340px] xl:w-[400px] select-none pointer-events-none opacity-95 animate-[heroFloat_10s_ease-in-out_infinite] drop-shadow-xl"
+          style="user-select:none;-webkit-user-drag:none;"
+        />
         <div class="relative rounded-2xl border border-[#e6eaf2] bg-white/60 backdrop-blur shadow-[0_10px_40px_-8px_rgba(0,0,0,0.08)] p-8 overflow-hidden">
           <div class="absolute -top-8 -right-8 w-40 h-40 bg-primary/20 rounded-full blur-2xl"></div>
           <div class="absolute -bottom-10 -left-10 w-44 h-44 bg-accent/30 rounded-full blur-2xl opacity-80"></div>
@@ -83,6 +95,9 @@ const STABLE_URL = import.meta.env.PUBLIC_STABLE_URL ?? 'https://stable.example.
         </div>
       </div>
     </section>
+    <style>
+      @keyframes heroFloat { 0%,100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-14px) rotate(1deg); } }
+    </style>
 
     <!-- 特性栅格 -->
     <section class="mx-auto w-[min(1200px,100%-48px)] mt-4 mb-20">

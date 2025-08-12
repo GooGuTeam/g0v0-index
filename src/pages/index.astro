@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { FiZap, FiCpu, FiUsers, FiShield, FiBookOpen } from 'react-icons/fi';
+import { Image } from 'astro:assets';
 
 const LAZER_URL = import.meta.env.PUBLIC_LAZER_URL ?? 'https://lazer.example.com';
 const STABLE_URL = import.meta.env.PUBLIC_STABLE_URL ?? 'https://stable.example.com';
@@ -50,14 +51,12 @@ const STABLE_URL = import.meta.env.PUBLIC_STABLE_URL ?? 'https://stable.example.
       <div class="relative">
         <!-- Floating lazer client preview image (desktop only) -->
         <div class="hidden md:block absolute -top-105 -right-1 w-[340px] xl:w-[400px] animate-[heroFloat_10s_ease-in-out_infinite] will-change-transform">
-          <img
+          <Image
             id="hero-click-audio"
             src="/image/lazer.png"
             alt="osu!lazer 预览 (点击播放音频)"
-            width="420"
-            height="260"
-            draggable="false"
-            decoding="async"
+            width={420}
+            height={260}
             loading="lazy"
             class="w-full select-none opacity-95 drop-shadow-xl transition-transform duration-300 ease-out hover:scale-105 active:scale-95 cursor-pointer"
             style="user-select:none;-webkit-user-drag:none;"

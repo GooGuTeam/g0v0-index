@@ -50,7 +50,7 @@ const STABLE_URL = import.meta.env.PUBLIC_STABLE_URL ?? 'https://stable.example.
       </div>
       <div class="relative">
         <!-- Floating lazer client preview image (desktop only) -->
-        <div class="hidden md:block absolute -top-105 -right-1 w-[340px] xl:w-[400px] animate-[heroFloat_10s_ease-in-out_infinite] will-change-transform">
+        <div class="hidden md:block absolute -top-105 right-6 w-[340px] xl:w-[400px] animate-[heroFloat_10s_ease-in-out_infinite] will-change-transform">
           <Image
             id="hero-click-audio"
             src="/image/lazer.png"
@@ -65,39 +65,6 @@ const STABLE_URL = import.meta.env.PUBLIC_STABLE_URL ?? 'https://stable.example.
         <audio id="hero-audio" preload="auto">
           <source src="/audio/welcome-to-osu.mp3" type="audio/mpeg" />
         </audio>
-        <div class="relative rounded-2xl border border-[#e6eaf2] bg-white/60 backdrop-blur shadow-[0_10px_40px_-8px_rgba(0,0,0,0.08)] p-8 overflow-hidden">
-          <div class="absolute -top-8 -right-8 w-40 h-40 bg-primary/20 rounded-full blur-2xl"></div>
-          <div class="absolute -bottom-10 -left-10 w-44 h-44 bg-accent/30 rounded-full blur-2xl opacity-80"></div>
-          <div class="relative z-10 space-y-6">
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 rounded-xl bg-primary/15 text-primary flex items-center justify-center">
-                <FiCpu size={24} />
-              </div>
-              <div class="flex-1">
-                <h3 class="m-0 mb-1 text-[16px] font-700 text-[#0f172a]">接入方式</h3>
-                <p class="m-0 text-[14px] leading-relaxed text-[#64748b]">提供接近官方的游玩环境与统计接口，兼容 lazer / stable。</p>
-              </div>
-            </div>
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 rounded-xl bg-accent/30 text-[#173f40] flex items-center justify-center">
-                <FiShield size={24} />
-              </div>
-              <div class="flex-1">
-                <h3 class="m-0 mb-1 text-[16px] font-700 text-[#0f172a]">环境贴近官方</h3>
-                <p class="m-0 text-[14px] leading-relaxed text-[#64748b]">尽量保持官方判定与更新节奏，便于无缝切换。</p>
-              </div>
-            </div>
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 rounded-xl bg-[#6366f1]/15 text-[#4f46e5] flex items-center justify-center">
-                <FiUsers size={24} />
-              </div>
-              <div class="flex-1">
-                <h3 class="m-0 mb-1 text-[16px] font-700 text-[#0f172a]">玩家驱动</h3>
-                <p class="m-0 text-[14px] leading-relaxed text-[#64748b]">由热爱 osu! 的玩家共同推编写的。</p>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
     <style>
@@ -120,30 +87,5 @@ const STABLE_URL = import.meta.env.PUBLIC_STABLE_URL ?? 'https://stable.example.
         });
       });
     </script>
-
-    <!-- 特性栅格 -->
-    <section class="mx-auto w-[min(1200px,100%-48px)] mt-4 mb-20">
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="group relative rounded-xl border border-[#e6eaf2] bg-white p-6 hover:shadow-md transition-all">
-          <div class="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-primary/0 via-primary/50 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-          <div class="w-10 h-10 rounded-lg bg-primary/15 text-primary flex items-center justify-center mb-4"><FiZap size={20} /></div>
-          <h3 class="m-0 mb-2 text-[16px] font-700 text-[#0f172a]">实时统计</h3>
-          <p class="m-0 text-[14px] leading-relaxed text-[#64748b]">快速反馈的统计与事件系统，保持游玩沉浸感。</p>
-        </div>
-        <div class="group relative rounded-xl border border-[#e6eaf2] bg-white p-6 hover:shadow-md transition-all">
-          <div class="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-accent/0 via-accent/60 to-accent/0 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-          <div class="w-10 h-10 rounded-lg bg-accent/40 text-[#173f40] flex items-center justify-center mb-4"><FiShield size={20} /></div>
-          <h3 class="m-0 mb-2 text-[16px] font-700 text-[#0f172a]">自由玩法</h3>
-          <p class="m-0 text-[14px] leading-relaxed text-[#64748b]">为玩家提供多样化的娱乐模式与交流氛围。</p>
-        </div>
-  
-        <div class="group relative rounded-xl border border-[#e6eaf2] bg-white p-6 hover:shadow-md transition-all">
-          <div class="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#6366f1]/0 via-[#6366f1]/50 to-[#6366f1]/0 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-          <div class="w-10 h-10 rounded-lg bg-[#6366f1]/20 text-[#4f46e5] flex items-center justify-center mb-4"><FiUsers size={20} /></div>
-          <h3 class="m-0 mb-2 text-[16px] font-700 text-[#0f172a]">玩家圈子</h3>
-          <p class="m-0 text-[14px] leading-relaxed text-[#64748b]">osu! 爱好者聚集地，分享谱面、活动与乐趣。</p>
-        </div>        
-      </div>
-    </section>
   </main>
 </BaseLayout>

@@ -1,0 +1,58 @@
+---
+layout: ../../layouts/MDXLayout.astro
+title: lazer 客户端教程
+description: 使用 osu!lazer 客户端连接本服务的指引
+---
+import Admonition from '../../components/Admonition.astro';
+
+# lazer 客户端教程
+
+本文介绍如何使用 osu!lazer 完成连接与基本功能说明。
+
+<Admonition type="tip" title="准备">
+建议先阅读 **快速开始** 完成账号与基础环境准备。
+</Admonition>
+
+## 安装或更新
+
+1. 前往官方 GitHub Releases 下载最新 osu!lazer。
+2. 解压或安装后启动一次以生成配置目录。
+
+## 连接设置
+
+lazer 当前支持通过内置 `Stable (Fallback)` 登录面板方式接入自定义服务：
+
+1. 打开设置 (Settings)。
+2. 检查是否存在自定义 `Server` / `Endpoint` 选项（若未来版本提供，将在此处填写地址）。
+3. 暂无内置入口时使用：自定义启动器 / hosts / 代理重写 方式接入。
+
+<Admonition type="warning" title="安全">
+不要泄露登录凭证、Access Token 或设备认证文件。
+</Admonition>
+
+## 数据 & PP 说明
+
+- 实时提交：游玩结束后成绩会自动尝试上传。
+- 断线重传：临时离线时会在下次启动或网络恢复时补交。
+- PP 计算：服务器基于最新公式异步刷新，若查看数据有延迟属正常现象。
+
+## 常见问题 (FAQ)
+
+**Q: 看不到我的成绩？**  
+A: 检查当前分支版本是否最新；确认网络无代理拦截；稍等 1-2 分钟再刷新。
+
+**Q: 出现提交失败提示？**  
+A: 可能是网络短暂中断，客户端会自动重试；持续失败请加入社区反馈 Log。
+
+**Q: 可以和 stable 共存吗？**  
+A: 可以，lazer 不影响原 stable 安装目录，互不覆盖。
+
+
+## 后续
+
+- 继续了解 [stable 教程](/docs/stable)（如需双客户端对比）
+- 返回 [快速开始](/docs/getting-started)
+
+---
+
+欢迎反馈更多需求以完善本教程。

@@ -1,0 +1,87 @@
+---
+import { FiBookOpen, FiExternalLink, FiGithub } from 'react-icons/fi';
+import { FaDiscord } from 'react-icons/fa';
+import { SiTencentqq } from 'react-icons/si';
+
+interface LinkItem { label: string; href: string; external?: boolean; }
+interface Column { title: string; links: LinkItem[] }
+
+const columns: Column[] = [
+  {
+    title: '关于',
+    links: [
+      { label: '文档', href: '/docs' },
+      { label: '快速开始', href: '/docs/getting-started' },
+    ],
+  },
+  {
+    title: '教程',
+    links: [
+      { label: 'lazer 教程', href: '/docs/lazer' },
+      { label: 'stable 教程', href: '/docs/stable' },
+    ],
+  },
+  {
+    title: '资源',
+    links: [
+      { label: 'osu! 官网', href: 'https://osu.ppy.sh', external: true },
+    ],
+  },
+];
+---
+<footer class="mt-16 relative bg-white border-t">
+  <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent"></div>
+  <div class="mx-auto w-[min(1200px,100%-48px)] py-10 grid gap-10 md:grid-cols-[240px,1fr]">
+    <div class="space-y-4">
+      <a href="/" class="inline-flex items-center gap-3 no-underline text-inherit">
+        <img src="/image/logo.svg" alt="咕哦！ " class="w-10 h-10" />
+        <span class="font-800 text-[20px]">咕哦！ </span>
+      </a>
+      <p class="text-[13px] leading-relaxed text-muted m-0 pr-4">
+        面向全模式的 osu! 服务集合，提供兼容 osu!lazer 与 osu!stable 客户端的服务器接入，并支持 RX / AP 等特性。
+      </p>
+      <div class="flex items-center gap-2">
+        <a aria-label="GitHub" href="https://github.com" target="_blank" rel="noopener" class="inline-flex items-center justify-center w-8 h-8 rounded-md border border-[#e6eaf2] text-[#475569] hover:(bg-[#f1f5f9] text-[#0f172a]) transition-colors">
+          <FiGithub size={16} />
+        </a>
+        <a aria-label="QQ" href="https://qq.com" target="_blank" rel="noopener" class="inline-flex items-center justify-center w-8 h-8 rounded-md border border-[#e6eaf2] text-[#475569] hover:(bg-[#f1f5f9] text-[#0f172a]) transition-colors">
+          <SiTencentqq size={16} />
+        </a>
+        <a aria-label="Discord" href="https://discord.com" target="_blank" rel="noopener" class="inline-flex items-center justify-center w-8 h-8 rounded-md border border-[#e6eaf2] text-[#475569] hover:(bg-[#f1f5f9] text-[#0f172a]) transition-colors">
+          <FaDiscord size={16} />
+        </a>
+      </div>
+    </div>
+    <div class="grid gap-8 sm:grid-cols-3">
+      {columns.map(col => (
+        <div>
+          <h3 class="m-0 mb-3 text-[13px] tracking-wide font-700 text-[#334155] uppercase">{col.title}</h3>
+          <ul class="m-0 list-none p-0 space-y-1">
+            {col.links.map(l => (
+              <li>
+                <a
+                  href={l.href}
+                  target={l.external ? '_blank' : undefined}
+                  rel={l.external ? 'noopener' : undefined}
+                  class="group inline-flex items-center gap-1 text-[14px] no-underline text-[#64748b] hover:text-[#0f172a] transition-colors"
+                >
+                  <span class="inline-flex items-center gap-1">
+                    {l.label}
+                    {l.external && <FiExternalLink size={12} className="opacity-60 group-hover:opacity-100" />}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+  <div class="border-t">
+    <div class="mx-auto w-[min(1200px,100%-48px)] flex flex-col sm:flex-row items-center justify-between py-4 gap-3 text-[12px] text-muted">
+      <p class="m-0">© 2025 g0v0.top. All Rights Reserved.</p>
+      <div class="flex items-center gap-3 text-[#64748b]">
+      </div>
+    </div>
+  </div>
+</footer>

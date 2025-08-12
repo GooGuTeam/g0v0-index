@@ -1,0 +1,74 @@
+---
+layout: ../../layouts/MDXLayout.astro
+title: 写作指南
+description: 学习如何使用 Markdown/MDX 编写文档，支持 GFM 告警块和代码高亮
+---
+
+# 写作指南
+
+使用 Markdown/MDX 直接编写文档页，支持 GFM、代码块与告警块。本指南将帮助你快速上手文档写作。
+
+## 📝 基础 Markdown 语法
+
+### 标题
+
+- `# 一级标题`
+- `## 二级标题`
+- `### 三级标题`
+
+## ⚠️ 告警块 (Admonitions)
+
+GitHub Flavored Markdown 支持多种告警块类型：
+
+> [!TIP]
+> 这是一个提示告警块，用于给出额外建议和有用的信息。
+
+> [!WARNING]
+> 这是一个警告告警块，用于强调风险或重要注意事项。
+
+> [!ERROR]
+> 这是一个错误告警块，用于指出问题或错误信息。
+
+> [!SUCCESS]
+> 这是一个成功告警块，用于表示操作成功或完成。
+
+## 💻 代码块
+
+支持多种编程语言的语法高亮：
+
+### 命令行示例
+
+```bash
+ppysb switch --server g0v0
+ppysb status
+ppysb help
+```
+
+### JavaScript 示例
+
+```javascript
+const server = 'g0v0';
+console.log(`连接到 ${server} 服务器`);
+```
+
+## 🔗 链接和图片
+
+### 链接语法
+
+- `[链接文本](URL)`
+- `[咕哦！ ](https://g0v0.top)`
+
+### 图片语法
+
+- `![alt文本](图片URL)`
+- `![logo](/image/logo.svg)`
+
+## 💡 写作建议
+
+- 使用清晰的标题层级结构
+- 适当使用告警块突出重要信息
+- 代码块要标明语言类型
+- 保持文档的一致性和可读性
+- 定期更新和维护文档内容
+
+

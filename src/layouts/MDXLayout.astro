@@ -1,0 +1,175 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+const current = Astro.url.pathname;
+
+// 使用与 DocsLayout 一致的 react-icons 图标与样式
+import { FiBookOpen, FiPlay, FiZap, FiServer } from 'react-icons/fi';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+interface NavItem { href: string; label: string; icon: any }
+const navItems: NavItem[] = [
+  { href: '/docs', label: '简介', icon: FiBookOpen },
+  { href: '/docs/getting-started', label: '快速开始', icon: FiPlay },
+  { href: '/docs/lazer', label: 'lazer 教程', icon: FiZap },
+  { href: '/docs/stable', label: 'stable 教程', icon: FiServer },
+];
+---
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/image/logo.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title} - 咕哦！ </title>
+  </head>
+  <body class="font-sans text-text bg-bg">
+  <SiteHeader />
+
+    <main class="mx-auto w-[min(1200px,100%-48px)] py-8">
+      <div class="flex gap-6">
+        <!-- Collapsible Sidebar -->
+  <aside class="relative lg:sticky lg:top-24 lg:self-start">
+          <!-- Toggle Button -->
+          <button
+            id="sidebar-toggle"
+            class="lg:hidden fixed top-20 left-4 z-40 bg-white border border-[#e6eaf2] rounded-lg p-2 shadow-sm hover:shadow-md transition-colors"
+            aria-label="切换侧边栏"
+          >
+            <svg class="w-5 h-5 text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+
+          <!-- Sidebar Content -->
+          <div
+            id="sidebar"
+            class="fixed lg:static inset-y-0 left-0 z-30 w-64 lg:w-60 bg-white/95 supports-[backdrop-filter]:bg-white/80 backdrop-blur border-r border-[#e6eaf2] lg:(border rounded-xl shadow-sm) transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out shadow-lg lg:shadow-none lg:max-h-[calc(100vh-140px)] lg:overflow-y-auto"
+          >
+            <div class="flex flex-col h-full">
+              <!-- Header -->
+              <div class="p-4 border-b border-[#e6eaf2] lg:border-b-0">
+                <h2 class="m-0 text-[15px] font-700 tracking-wide text-[#334155]">文档导航</h2>
+                <button
+                  id="close-sidebar"
+                  class="lg:hidden absolute top-4 right-4 text-muted hover:text-text"
+                  aria-label="关闭侧边栏"
+                >
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                  </svg>
+                </button>
+              </div>
+
+              <!-- Navigation -->
+              <nav class="flex-1 p-4 overflow-y-auto">
+                <ul class="m-0 list-none space-y-1">
+                  {navItems.map((item) => {
+                    const Icon = item.icon;
+                    const active = current === item.href;
+                    return (
+                      <li>
+                        <a
+                          href={item.href}
+                          aria-current={active ? 'page' : undefined}
+                          class={`group flex items-center gap-3 px-3 py-2 rounded-md no-underline text-[14px] font-500 transition-all outline-none focus-visible:ring-2 ring-primary/40 relative ${
+                            active
+                              ? 'bg-gradient-to-r from-primary to-primary/90 text-white shadow-sm'
+                              : 'text-[#64748b] hover:(bg-[#f1f5f9] text-[#0f172a])'
+                          }`}
+                        >
+                          <span class={`inline-flex items-center justify-center w-6 h-6 rounded-md transition-colors ${active ? 'text-white' : 'text-[#475569] group-hover:text-primary'}`}>
+                            <Icon size={18} />
+                          </span>
+                          <span class="truncate">{item.label}</span>
+                          {active && <span class="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-6 rounded-r bg-accent"></span>}
+                        </a>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </nav>
+            </div>
+          </div>
+
+          <!-- Overlay for mobile -->
+          <div 
+            id="sidebar-overlay"
+            class="fixed inset-0 bg-black bg-opacity-50 z-20 lg:hidden opacity-0 pointer-events-none transition-opacity duration-300"
+          ></div>
+        </aside>
+
+        <!-- Content -->
+        <article class="flex-1 min-w-0">
+          <div class="bg-white rounded-xl border border-[#e6eaf2] p-8 shadow-sm relative">
+            <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent"></div>
+            <!-- Mobile page selector -->
+            <div class="lg:hidden mb-6">
+              <label for="mobile-page-select" class="block text-[12px] font-600 tracking-wide text-[#64748b] mb-2">当前页面</label>
+              <div class="relative">
+                <select id="mobile-page-select" class="w-full appearance-none rounded-lg border border-[#e2e8f0] bg-white px-3 py-2 text-[14px] text-[#0f172a] focus:outline-none focus:ring-2 ring-primary/40">
+                  {navItems.map(item => (
+                    <option value={item.href} selected={current === item.href}>{item.label}</option>
+                  ))}
+                </select>
+                <span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#94a3b8]">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </span>
+              </div>
+            </div>
+            <div class="prose prose-lg max-w-none prose-headings:text-[#0f172a] prose-p:text-[#475569] prose-strong:text-[#0f172a] prose-code:bg-[#f1f5f9] prose-code:text-[#0f172a] prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-sm">
+              <slot />
+            </div>
+          </div>
+        </article>
+      </div>
+    </main>
+
+  <SiteFooter />
+
+    <script>
+      // Sidebar toggle functionality
+      const sidebar = document.getElementById('sidebar');
+      const sidebarToggle = document.getElementById('sidebar-toggle');
+      const closeSidebar = document.getElementById('close-sidebar');
+      const overlay = document.getElementById('sidebar-overlay');
+  const mobileSelect = document.getElementById('mobile-page-select');
+
+      function openSidebar() {
+        sidebar?.classList.remove('-translate-x-full');
+        overlay?.classList.remove('opacity-0', 'pointer-events-none');
+        overlay?.classList.add('opacity-100', 'pointer-events-auto');
+      }
+
+      function closeSidebarFunc() {
+        sidebar?.classList.add('-translate-x-full');
+        overlay?.classList.add('opacity-0', 'pointer-events-none');
+        overlay?.classList.remove('opacity-100', 'pointer-events-auto');
+      }
+
+      sidebarToggle?.addEventListener('click', openSidebar);
+      closeSidebar?.addEventListener('click', closeSidebarFunc);
+      overlay?.addEventListener('click', closeSidebarFunc);
+
+      // Close sidebar on escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeSidebarFunc();
+        }
+      });
+
+      // Mobile page select navigation
+      mobileSelect?.addEventListener('change', (e) => {
+        const target = e.target?.value;
+        if (target) window.location.href = target;
+      });
+    </script>
+  </body>
+</html>

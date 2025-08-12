@@ -1,0 +1,68 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import { FiTarget, FiZap, FiBookOpen, FiServer, FiAlertCircle } from 'react-icons/fi';
+---
+
+<DocsLayout title="简介" description="咕哦！ 文档中心">
+  <div class="prose prose-lg max-w-none">
+    <h1 class="text-3xl font-800 mb-6 text-text">欢迎来到咕哦！ </h1>
+    
+    <p class="text-lg leading-relaxed text-muted mb-6">
+      面向全模式的 osu! 第三方服务，兼容 osu!lazer 与 osu!stable，提供 RX / AP 及完整 PP 计算支持。
+    </p>
+
+      <div class="grid md:grid-cols-2 gap-6 my-8">
+        <div class="group bg-[#f8fafc] p-6 rounded-xl border border-[#e2e8f0] relative overflow-hidden transition-colors hover:bg-white">
+          <div class="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-primary/0 via-primary/40 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <h3 class="flex items-center gap-2 text-lg font-700 mb-3 text-text">
+            <span class="inline-flex items-center justify-center w-8 h-8 rounded-md bg-primary/10 text-primary"><FiTarget size={18} /></span>
+            核心特性
+          </h3>
+          <ul class="space-y-2 text-muted text-[15px]">
+            <li>全模式支持 (Standard, Taiko, Catch, Mania)</li>
+            <li>先进的 RX / AP 算法</li>
+            <li>完整的 PP 计算系统</li>
+            <li>无限次改名机会</li>
+          </ul>
+        </div>
+
+        <div class="group bg-[#f8fafc] p-6 rounded-xl border border-[#e2e8f0] relative overflow-hidden transition-colors hover:bg-white">
+          <div class="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-accent/0 via-accent/60 to-accent/0 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <h3 class="flex items-center gap-2 text-lg font-700 mb-3 text-text">
+            <span class="inline-flex items-center justify-center w-8 h-8 rounded-md bg-accent/20 text-[#173f40]"><FiZap size={18} /></span>
+            快速开始
+          </h3>
+          <ul class="space-y-2 text-muted text-[15px]">
+            <li>查看详细文档</li>
+            <li>选择你的客户端</li>
+            <li>加入游戏服务器</li>
+            <li>开始你的音乐之旅</li>
+          </ul>
+        </div>
+      </div>
+
+    <div class="group bg-gradient-to-br from-primary/5 via-primary/10 to-primary/5 p-6 rounded-xl border border-primary/20 relative overflow-hidden">
+      <div class="absolute -right-10 -top-10 w-40 h-40 rounded-full bg-primary/10 blur-2xl opacity-70 pointer-events-none"></div>
+      <h3 class="flex items-center gap-2 text-lg font-700 mb-3 text-primary">
+        <span class="inline-flex items-center justify-center w-8 h-8 rounded-md bg-primary/15 text-primary"><FiAlertCircle size={18} /></span>
+        需要帮助？
+      </h3>
+      <p class="text-muted mb-4 relative z-10">
+        如果你在游戏过程中遇到任何问题，欢迎加入我们的社区获取帮助和支持。
+      </p>
+      <div class="flex flex-wrap gap-3 relative z-10">
+        <a href="/docs/getting-started" class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg no-underline hover:opacity-90 transition-colors text-[14px]">
+          <FiBookOpen size={16} /> 快速开始
+        </a>
+        <a href="/docs/lazer" class="inline-flex items-center gap-2 px-4 py-2 bg-accent text-[#173f40] rounded-lg no-underline hover:opacity-90 transition-colors text-[14px]">
+          <FiZap size={16} /> lazer 教程
+        </a>
+        <a href="/docs/stable" class="inline-flex items-center gap-2 px-4 py-2 bg-[#6366f1]/15 text-[#4f46e5] rounded-lg no-underline hover:bg-[#6366f1]/25 transition-colors text-[14px]">
+          <FiServer size={16} /> stable 教程
+        </a>
+      </div>
+    </div>
+  </div>
+</DocsLayout>
+
+

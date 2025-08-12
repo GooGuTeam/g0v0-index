@@ -1,0 +1,26 @@
+---
+interface Props {
+  type?: 'tip' | 'warning' | 'error' | 'success' | 'info';
+  title?: string;
+}
+const { type = 'info', title } = Astro.props as Props;
+const colorMap: Record<string,{bg:string;border:string;icon:string;text:string;label:string}> = {
+  tip: { bg: 'bg-emerald-50', border: 'border-emerald-300', icon: 'text-emerald-600', text: 'text-emerald-700', label: '提示' },
+  warning: { bg: 'bg-amber-50', border: 'border-amber-300', icon: 'text-amber-600', text: 'text-amber-700', label: '警告' },
+  error: { bg: 'bg-rose-50', border: 'border-rose-300', icon: 'text-rose-600', text: 'text-rose-700', label: '错误' },
+  success: { bg: 'bg-green-50', border: 'border-green-300', icon: 'text-green-600', text: 'text-green-700', label: '成功' },
+  info: { bg: 'bg-sky-50', border: 'border-sky-300', icon: 'text-sky-600', text: 'text-sky-700', label: '信息' },
+};
+// dynamic import icon
+import { FiInfo, FiAlertTriangle, FiAlertCircle, FiCheckCircle } from 'react-icons/fi';
+const iconMap: Record<string, any> = { tip: FiInfo, warning: FiAlertTriangle, error: FiAlertCircle, success: FiCheckCircle, info: FiInfo };
+const c = colorMap[type] ?? colorMap.info;
+const Icon = iconMap[type] ?? FiInfo;
+---
+<div class={`rounded-lg border p-4 text-[14px] leading-relaxed flex gap-3 ${c.bg} ${c.border} ${c.text}`}>
+  <div class={`mt-[2px] ${c.icon}`}><Icon size={18} /></div>
+  <div class="space-y-2">
+    <strong class="block font-600">{title ?? c.label}</strong>
+    <div class="prose prose-sm m-0 prose-p:m-0 prose-ul:m-0 prose-li:m-0"> <slot /> </div>
+  </div>
+</div>

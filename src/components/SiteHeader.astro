@@ -1,0 +1,19 @@
+---
+// 站点统一头部组件
+const current = Astro.url.pathname;
+const LAZER_URL = import.meta.env.PUBLIC_LAZER_URL ?? 'https://lazer.example.com';
+const STABLE_URL = import.meta.env.PUBLIC_STABLE_URL ?? 'https://stable.example.com';
+---
+<header class="sticky top-0 z-50 backdrop-blur bg-white/80 border-b border-[#e6eaf2] supports-[backdrop-filter]:bg-white/60">
+  <div class="mx-auto w-[min(1200px,100%-48px)] flex items-center gap-6 py-3">
+    <a href="/" class="inline-flex items-center gap-3 no-underline text-inherit group">
+      <img src="/image/logo.svg" alt="咕哦！ " class="w-8 h-8 transition-transform group-hover:rotate-6" />
+      <span class="font-800 tracking-[0.5px] text-[18px] bg-clip-text text-transparent bg-gradient-to-r from-[#0ea5e9] to-[#6366f1]">咕哦！ </span>
+    </a>
+    <nav class="ml-auto inline-flex items-center gap-2">
+      <a href="/docs" class={`relative no-underline rounded-lg px-4 py-2 text-[14px] font-600 transition-colors outline-none focus-visible:ring-2 ring-primary/40 ${current.startsWith('/docs') ? 'bg-primary text-white shadow-sm' : 'text-text hover:bg-[#f1f5f9]'}`}>文档</a>
+      <a href={LAZER_URL} target="_blank" rel="noopener" class="no-underline text-[#173f40] bg-accent rounded-lg px-4 py-2 text-[14px] font-700 hover:opacity-90 transition-colors">lazer</a>
+      <a href={STABLE_URL} target="_blank" rel="noopener" class="no-underline text-[#173f40] bg-accent rounded-lg px-4 py-2 text-[14px] font-700 hover:opacity-90 transition-colors">stable</a>
+    </nav>
+  </div>
+</header>

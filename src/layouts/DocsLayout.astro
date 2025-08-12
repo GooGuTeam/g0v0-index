@@ -39,22 +39,11 @@ const navItems: NavItem[] = [
   <body class="font-sans text-text bg-bg">
   <SiteHeader />
 
-    <main class="mx-auto w-[min(1200px,100%-48px)] py-8">
-      <div class="flex gap-6">
-        <!-- Collapsible Sidebar -->
+    <main class="mx-auto w-full px-4 sm:px-5 md:w-[min(1200px,100%-48px)] md:px-0 py-6 md:py-8">
+      <div class="block lg:flex lg:gap-6">
+  <!-- Collapsible Sidebar -->
   <aside class="relative lg:sticky lg:top-24 lg:self-start">
-          <!-- Toggle Button -->
-          <button
-            id="sidebar-toggle"
-            class="lg:hidden fixed top-20 left-4 z-40 bg-white border border-[#e6eaf2] rounded-lg p-2 shadow-sm hover:shadow-md transition-colors"
-            aria-label="切换侧边栏"
-          >
-            <svg class="w-5 h-5 text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
-          </button>
-
-          <!-- Sidebar Content -->
+    <!-- Sidebar Content -->
           <div
             id="sidebar"
             class="fixed lg:static inset-y-0 left-0 z-30 w-64 lg:w-60 bg-white/95 supports-[backdrop-filter]:bg-white/80 backdrop-blur border-r border-[#e6eaf2] lg:(border rounded-xl shadow-sm) transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out shadow-lg lg:shadow-none lg:max-h-[calc(100vh-140px)] lg:overflow-y-auto"
@@ -114,22 +103,8 @@ const navItems: NavItem[] = [
 
         <!-- Content -->
         <article class="flex-1 min-w-0">
-          <div class="bg-white rounded-xl border border-[#e6eaf2] p-8 shadow-sm relative">
-            <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent"></div>
-            <!-- Mobile page selector -->
-            <div class="lg:hidden mb-6">
-              <label for="mobile-page-select" class="block text-[12px] font-600 tracking-wide text-[#64748b] mb-2">当前页面</label>
-              <div class="relative">
-                <select id="mobile-page-select" class="w-full appearance-none rounded-lg border border-[#e2e8f0] bg-white px-3 py-2 text-[14px] text-[#0f172a] focus:outline-none focus:ring-2 ring-primary/40">
-                  {navItems.map(item => (
-                    <option value={item.href} selected={current === item.href}>{item.label}</option>
-                  ))}
-                </select>
-                <span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#94a3b8]">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                </span>
-              </div>
-            </div>
+          <div class="p-4 sm:p-6 lg:(bg-white rounded-xl border border-[#e6eaf2] p-8 shadow-sm relative)">
+            <div class="hidden lg:block absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent"></div>
             <slot />
           </div>
         </article>
@@ -144,7 +119,6 @@ const navItems: NavItem[] = [
       const sidebarToggle = document.getElementById('sidebar-toggle');
       const closeSidebar = document.getElementById('close-sidebar');
       const overlay = document.getElementById('sidebar-overlay');
-  const mobileSelect = document.getElementById('mobile-page-select');
 
       function openSidebar() {
         sidebar?.classList.remove('-translate-x-full');
@@ -167,12 +141,6 @@ const navItems: NavItem[] = [
         if (e.key === 'Escape') {
           closeSidebarFunc();
         }
-      });
-
-      // Mobile page select navigation
-      mobileSelect?.addEventListener('change', (e) => {
-        const target = e.target?.value;
-        if (target) window.location.href = target;
       });
     </script>
   </body>

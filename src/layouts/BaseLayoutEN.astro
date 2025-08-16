@@ -1,0 +1,30 @@
+---
+export interface Props {
+	title?: string;
+	description?: string;
+}
+
+import SiteHeaderEN from "../components/SiteHeaderEN.astro";
+import SiteFooterEN from "../components/SiteFooterEN.astro";
+
+const { title = "Guo! ", description = "An osu! for all modes. We provide PP calculation and support for all modes." } =
+	Astro.props as Props;
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content={description} />
+		<link rel="icon" type="image/svg+xml" href="/image/logo.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body class="font-sans text-text bg-bg">
+		<SiteHeaderEN />
+
+		<slot />
+
+		<SiteFooterEN />
+	</body>
+</html>

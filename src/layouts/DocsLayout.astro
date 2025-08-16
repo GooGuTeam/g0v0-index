@@ -1,147 +1,144 @@
 ---
 export interface Props {
-  title: string;
-  description?: string;
+	title: string;
+	description?: string;
 }
 
 const { title, description } = Astro.props;
 const current = Astro.url.pathname;
 
-// Define navigation items
 // 使用 react-icons 代替 emoji，让视觉更统一可控
-import { FiBookOpen, FiPlay, FiZap, FiServer } from 'react-icons/fi';
-import SiteHeader from '../components/SiteHeader.astro';
-import SiteFooter from '../components/SiteFooter.astro';
+import { FiBookOpen, FiPlay, FiZap, FiServer } from "react-icons/fi";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import { getRelativeLocaleUrl } from "astro:i18n";
 
 interface NavItem {
-  href: string;
-  label: string;
-  icon: any; // react-icons 组件
+	href: string;
+	label: string;
+	icon: any; // react-icons 组件
 }
 
+// 使用 getRelativeLocaleUrl 生成内部文档路径
 const navItems: NavItem[] = [
-  { href: '/docs', label: '简介', icon: FiBookOpen },
-  { href: '/docs/getting-started', label: '快速开始', icon: FiPlay },
-  { href: '/docs/lazer', label: 'lazer 教程', icon: FiZap },
-  { href: '/docs/stable', label: 'stable 教程', icon: FiServer },
+	{ href: getRelativeLocaleUrl("zh", "docs"), label: "简介", icon: FiBookOpen },
+	{ href: getRelativeLocaleUrl("zh", "docs/lazer"), label: "lazer 教程", icon: FiZap },
 ];
 ---
 
 <html lang="zh-CN">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={description} />
-    <link rel="icon" type="image/svg+xml" href="/image/logo.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title} - 咕哦！ </title>
-  </head>
-  <body class="font-sans text-text bg-bg">
-  <SiteHeader />
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content={description} />
+		<link rel="icon" type="image/svg+xml" href="/image/logo.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title} - 咕哦！</title>
+	</head>
+	<body class="font-sans text-text bg-bg">
+		<SiteHeader />
 
-    <main class="mx-auto w-full px-4 sm:px-5 md:w-[min(1200px,100%-48px)] md:px-0 py-6 md:py-8">
-      <div class="block lg:flex lg:gap-6">
-  <!-- Collapsible Sidebar -->
-  <aside class="relative lg:sticky lg:top-24 lg:self-start">
-    <!-- Sidebar Content -->
-          <div
-            id="sidebar"
-            class="fixed lg:static inset-y-0 left-0 z-30 w-64 lg:w-60 bg-white/95 supports-[backdrop-filter]:bg-white/80 backdrop-blur border-r border-[#e6eaf2] lg:(border rounded-xl shadow-sm) transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out shadow-lg lg:shadow-none lg:max-h-[calc(100vh-140px)] lg:overflow-y-auto"
-          >
-            <div class="flex flex-col h-full">
-              <!-- Header -->
-              <div class="p-4 border-b border-[#e6eaf2] lg:border-b-0">
-                <h2 class="m-0 text-[15px] font-700 tracking-wide text-[#334155]">文档导航</h2>
-                <button
-                  id="close-sidebar"
-                  class="lg:hidden absolute top-4 right-4 text-muted hover:text-text"
-                  aria-label="关闭侧边栏"
-                >
-                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                  </svg>
-                </button>
-              </div>
+		<main class="mx-auto w-full px-4 sm:px-5 md:w-[min(1200px,100%-48px)] md:px-0 py-6 md:py-8">
+			<div class="block lg:flex lg:gap-6">
+				<!-- Collapsible Sidebar -->
+				<aside class="relative lg:sticky lg:top-24 lg:self-start">
+					<!-- Sidebar Content -->
+					<div
+						id="sidebar"
+						class="fixed lg:static inset-y-0 left-0 z-30 w-64 lg:w-60 bg-white/95 supports-[backdrop-filter]:bg-white/80 backdrop-blur border-r border-[#e6eaf2] lg:(border rounded-xl shadow-sm) transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out shadow-lg lg:shadow-none lg:max-h-[calc(100vh-140px)] lg:overflow-y-auto">
+						<div class="flex flex-col h-full">
+							<!-- Header -->
+							<div class="p-4 border-b border-[#e6eaf2] lg:border-b-0">
+								<h2 class="m-0 text-[15px] font-700 tracking-wide text-[#334155]">文档导航</h2>
+								<button id="close-sidebar" class="lg:hidden absolute top-4 right-4 text-muted hover:text-text" aria-label="关闭侧边栏">
+									<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+									</svg>
+								</button>
+							</div>
 
-              <!-- Navigation -->
-              <nav class="flex-1 p-4 overflow-y-auto">
-                <ul class="m-0 list-none space-y-1">
-                  {navItems.map((item) => {
-                    const Icon = item.icon;
-                    const active = current === item.href;
-                    return (
-                      <li>
-                        <a
-                          href={item.href}
-                          aria-current={active ? 'page' : undefined}
-                          class={`group flex items-center gap-3 px-3 py-2 rounded-md no-underline text-[14px] font-500 transition-all outline-none focus-visible:ring-2 ring-primary/40 relative ${
-                            active
-                              ? 'bg-gradient-to-r from-primary to-primary/90 text-white shadow-sm'
-                              : 'text-[#64748b] hover:(bg-[#f1f5f9] text-[#0f172a])'
-                          }`}
-                        >
-                          <span class={`inline-flex items-center justify-center w-6 h-6 rounded-md transition-colors ${active ? 'text-white' : 'text-[#475569] group-hover:text-primary'}`}>
-                            <Icon size={18} />
-                          </span>
-                          <span class="truncate">{item.label}</span>
-                          {active && <span class="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-6 rounded-r bg-accent"></span>}
-                        </a>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </nav>
-            </div>
-          </div>
+							<!-- Navigation -->
+							<nav class="flex-1 p-4 overflow-y-auto">
+								<ul class="m-0 list-none space-y-1">
+									{
+										navItems.map((item) => {
+											const Icon = item.icon;
+											const active = current === item.href;
+											return (
+												<li>
+													<a
+														href={item.href}
+														aria-current={active ? "page" : undefined}
+														class={`group flex items-center gap-3 px-3 py-2 rounded-md no-underline text-[14px] font-500 transition-all outline-none focus-visible:ring-2 ring-primary/40 relative ${
+															active
+																? "bg-gradient-to-r from-primary to-primary/90 text-white shadow-sm"
+																: "text-[#64748b] hover:(bg-[#f1f5f9] text-[#0f172a])"
+														}`}>
+														<span
+															class={`inline-flex items-center justify-center w-6 h-6 rounded-md transition-colors ${active ? "text-white" : "text-[#475569] group-hover:text-primary"}`}>
+															<Icon size={18} />
+														</span>
+														<span class="truncate">{item.label}</span>
+														{active && <span class="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-6 rounded-r bg-accent" />}
+													</a>
+												</li>
+											);
+										})
+									}
+								</ul>
+							</nav>
+						</div>
+					</div>
 
-          <!-- Overlay for mobile -->
-          <div 
-            id="sidebar-overlay"
-            class="fixed inset-0 bg-black bg-opacity-50 z-20 lg:hidden opacity-0 pointer-events-none transition-opacity duration-300"
-          ></div>
-        </aside>
+					<!-- Overlay for mobile -->
+					<div
+						id="sidebar-overlay"
+						class="fixed inset-0 bg-black bg-opacity-50 z-20 lg:hidden opacity-0 pointer-events-none transition-opacity duration-300">
+					</div>
+				</aside>
 
-        <!-- Content -->
-        <article class="flex-1 min-w-0">
-          <div class="p-4 sm:p-6 lg:(bg-white rounded-xl border border-[#e6eaf2] p-8 shadow-sm relative)">
-            <div class="hidden lg:block absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent"></div>
-            <slot />
-          </div>
-        </article>
-      </div>
-    </main>
+				<!-- Content -->
+				<article class="flex-1 min-w-0">
+					<div class="p-4 sm:p-6 lg:(bg-white rounded-xl border border-[#e6eaf2] p-8 shadow-sm relative)">
+						<div class="hidden lg:block absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent">
+						</div>
+						<slot />
+					</div>
+				</article>
+			</div>
+		</main>
 
-  <SiteFooter />
+		<SiteFooter />
 
-    <script>
-      // Sidebar toggle functionality
-      const sidebar = document.getElementById('sidebar');
-      const sidebarToggle = document.getElementById('sidebar-toggle');
-      const closeSidebar = document.getElementById('close-sidebar');
-      const overlay = document.getElementById('sidebar-overlay');
+		<script>
+			// Sidebar toggle functionality
+			const sidebar = document.getElementById("sidebar");
+			const sidebarToggle = document.getElementById("sidebar-toggle");
+			const closeSidebar = document.getElementById("close-sidebar");
+			const overlay = document.getElementById("sidebar-overlay");
 
-      function openSidebar() {
-        sidebar?.classList.remove('-translate-x-full');
-        overlay?.classList.remove('opacity-0', 'pointer-events-none');
-        overlay?.classList.add('opacity-100', 'pointer-events-auto');
-      }
+			function openSidebar() {
+				sidebar?.classList.remove("-translate-x-full");
+				overlay?.classList.remove("opacity-0", "pointer-events-none");
+				overlay?.classList.add("opacity-100", "pointer-events-auto");
+			}
 
-      function closeSidebarFunc() {
-        sidebar?.classList.add('-translate-x-full');
-        overlay?.classList.add('opacity-0', 'pointer-events-none');
-        overlay?.classList.remove('opacity-100', 'pointer-events-auto');
-      }
+			function closeSidebarFunc() {
+				sidebar?.classList.add("-translate-x-full");
+				overlay?.classList.add("opacity-0", "pointer-events-none");
+				overlay?.classList.remove("opacity-100", "pointer-events-auto");
+			}
 
-      sidebarToggle?.addEventListener('click', openSidebar);
-      closeSidebar?.addEventListener('click', closeSidebarFunc);
-      overlay?.addEventListener('click', closeSidebarFunc);
+			sidebarToggle?.addEventListener("click", openSidebar);
+			closeSidebar?.addEventListener("click", closeSidebarFunc);
+			overlay?.addEventListener("click", closeSidebarFunc);
 
-      // Close sidebar on escape key
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-          closeSidebarFunc();
-        }
-      });
-    </script>
-  </body>
+			// Close sidebar on escape key
+			document.addEventListener("keydown", (e) => {
+				if (e.key === "Escape") {
+					closeSidebarFunc();
+				}
+			});
+		</script>
+	</body>
 </html>

@@ -1,26 +1,24 @@
 ---
-import DocsLayout from "../../layouts/DocsLayoutEN.astro";
-import { FiList, FiInfo, FiZap, FiServer, FiAlertTriangle, FiAlertCircle, FiCheckCircle } from "react-icons/fi";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import DocsLayout from "../../../layouts/DocsLayout.astro";
+import { FiZap, FiServer } from "react-icons/fi";
 ---
 
-<DocsLayout title="Getting Started" description="Quickly get started with Goo!">
+<DocsLayout title="快速开始" description="快速上手咕哦！">
 	<div class="prose prose-lg max-w-none">
-		<h1 class="text-3xl font-800 mb-6 text-text">Getting Started Guide</h1>
+		<h1 class="text-3xl font-800 mb-6 text-text">快速开始指南</h1>
 
-		<p class="text-lg leading-relaxed text-muted mb-8">
-			Follow the steps below to quickly join Goo! and start your rhythm game journey.
-		</p>
+		<p class="text-lg leading-relaxed text-muted mb-8">按照以下步骤，快速加入咕哦！开始你的音乐游戏之旅。</p>
 
 		<div class="space-y-10">
-			<!-- Version selection component -->
+			<!-- 版本选择组件 -->
 			<div class="bg-white p-6 rounded-xl border border-[#e2e8f0] shadow-sm">
 				<h2 class="m-0 mb-4 text-xl font-700 flex items-center gap-2 text-[#0f172a]">
 					<span class="inline-flex items-center justify-center w-8 h-8 rounded-md bg-primary/10 text-primary"><FiZap size={18} /></span>
-					Select your client version
+					选择你的客户端版本
 				</h2>
-				<p class="text-muted m-0 mb-5 text-[15px]">
-					Goo! supports both osu!lazer and osu!stable. You can start with either one, or run both clients in parallel.
-				</p>
+				<p class="text-muted m-0 mb-5 text-[15px]">咕哦！同时兼容 osu!lazer 与 osu!stable。你可以任选其一开始，也可以双客户端并行。</p>
+
 				<div class="flex flex-wrap gap-3 mb-6" id="version-tabs">
 					<button
 						data-target="ver-lazer"
@@ -33,6 +31,31 @@ import { FiList, FiInfo, FiZap, FiServer, FiAlertTriangle, FiAlertCircle, FiChec
 						<FiServer size={16} /> stable
 					</button>
 				</div>
+
+				<!-- 下载面板 -->
+				<div class="space-y-4">
+					<div id="ver-lazer" class="version-panel block">
+						<p class="text-[#475569] text-[15px]">下载适用于你的平台的 osu!lazer 客户端：</p>
+						<a
+							href={getRelativeLocaleUrl("zh", "download/lazer")}
+							target="_blank"
+							rel="noopener"
+							class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-white font-600 shadow-sm">
+							下载 lazer
+						</a>
+					</div>
+
+					<div id="ver-stable" class="version-panel hidden">
+						<p class="text-[#475569] text-[15px]">下载适用于你的平台的 osu!stable 客户端：</p>
+						<a
+							href={getRelativeLocaleUrl("zh", "download/stable")}
+							target="_blank"
+							rel="noopener"
+							class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#6366f1]/15 text-[#4f46e5] font-600">
+							下载 stable
+						</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -41,13 +64,17 @@ import { FiList, FiInfo, FiZap, FiServer, FiAlertTriangle, FiAlertCircle, FiChec
 <script>
 	const tabButtons = document.querySelectorAll(".version-tab");
 	const panels = document.querySelectorAll(".version-panel");
+
 	tabButtons.forEach((btn) => {
 		btn.addEventListener("click", () => {
 			const target = btn.getAttribute("data-target");
+
 			tabButtons.forEach((b) => b.classList.remove("active", "bg-primary", "text-white", "shadow-sm"));
 			tabButtons.forEach((b) => b.classList.add("bg-[#6366f1]/15", "text-[#4f46e5]"));
+
 			btn.classList.add("active", "bg-primary", "text-white", "shadow-sm");
 			btn.classList.remove("bg-[#6366f1]/15", "text-[#4f46e5]");
+
 			panels.forEach((p) => p.classList.add("hidden"));
 			const panel = document.getElementById(target || "");
 			panel?.classList.remove("hidden");

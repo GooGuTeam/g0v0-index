@@ -1,14 +1,15 @@
 ---
-import BaseLayout from "../layouts/BaseLayoutEN.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 import { FiZap, FiCpu, FiUsers, FiShield, FiBookOpen } from "react-icons/fi";
 import { Image } from "astro:assets";
+import { getRelativeLocaleUrl } from "astro:i18n";
 
 const LAZER_URL = import.meta.env.PUBLIC_LAZER_URL ?? "https://lazer.g0v0.top";
 ---
 
-<BaseLayout title="gsu! ">
+<BaseLayout title="咕哦！ ">
 	<main class="relative overflow-hidden">
-		<!-- Background decoration -->
+		<!-- 背景装饰 -->
 		<div class="pointer-events-none select-none absolute inset-0 -z-10">
 			<div
 				class="absolute -top-32 -left-32 w-96 h-96 bg-gradient-to-br from-primary/30 to-accent/30 rounded-full blur-3xl opacity-40">
@@ -23,55 +24,39 @@ const LAZER_URL = import.meta.env.PUBLIC_LAZER_URL ?? "https://lazer.g0v0.top";
 			<div>
 				<span
 					class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[12px] font-600 tracking-wide bg-[#ffffff] border border-[#e6eaf2] shadow-sm text-[#64748b] mb-5">
-					<FiZap size={14} /> Multi-mode Server (lazer & stable)
+					<FiZap size={14} /> 多模式服务器 (lazer & stable)
 				</span>
 				<h1 class="m-0 mb-5 text-[clamp(40px,6vw,56px)] leading-[1.05] font-800 tracking-[-1px]">
-					<span class="bg-clip-text text-transparent bg-gradient-to-r from-[#0ea5e9] via-primary to-[#6366f1]">gsu! </span>
-					<span class="block text-[clamp(20px,3vw,28px)] font-600 mt-3 text-[#334155]"
-						>Full RX / AP support with a complete PP ecosystem</span
-					>
+					<span class="bg-clip-text text-transparent bg-gradient-to-r from-[#0ea5e9] via-primary to-[#6366f1]">咕哦！ </span>
+					<span class="block text-[clamp(20px,3vw,28px)] font-600 mt-3 text-[#334155]">为玩家提供全模式 RX / AP 与完整 PP 生态</span>
 				</h1>
 				<p class="text-[#475569] mt-0 mb-8 leading-relaxed text-[17px] max-w-[640px]">
-					Standard / Taiko / Catch / Mania fully supported. Real-time calculations, flexible renaming, and total freedom for your rhythm
-					journey. Pick a client and start playing today.
+					标准 / 太鼓 / 接水果 / Mania 全面支持，实时计算与灵活改名，让你的节奏旅程更自由。立即选择你的客户端加入我们。
 				</p>
 				<div class="flex flex-wrap gap-4">
 					<a
-						href="/docs"
+						href={getRelativeLocaleUrl("zh", "docs")}
 						class="group relative no-underline inline-flex items-center gap-2 text-white bg-primary rounded-lg px-6 py-3 text-[15px] font-600 shadow-[0_6px_20px_-2px_rgba(0,0,0,0.08)] hover:opacity-95 focus-visible:outline-none focus-visible:ring-2 ring-primary/40 transition">
-						<FiBookOpen size={18} /> Read Docs
+						<FiBookOpen size={18} /> 查看文档
 					</a>
 					<a
 						href={LAZER_URL}
 						target="_blank"
 						rel="noopener"
 						class="no-underline inline-flex items-center gap-2 text-[#173f40] bg-accent font-700 rounded-lg px-6 py-3 text-[15px] shadow-[0_6px_20px_-2px_rgba(0,0,0,0.08)] hover:opacity-95 focus-visible:outline-none focus-visible:ring-2 ring-accent/40 transition">
-						Try the lazer client (beta)
+						使用 lazer 客户端(内测中...)
 					</a>
 				</div>
 				<p class="text-[#64748b] mt-8 mb-0 text-[14px] flex items-center gap-3">
 					<span class="inline-flex items-center gap-1">
 						<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-						All systems operational
+						服务正常运行中
 					</span>
 					<span class="hidden sm:inline">·</span>
-					<span>Join our QQ / Discord communities for support & updates</span>
+					<span>加入 QQ / Discord 社区获取支持与更新</span>
 				</p>
 			</div>
 			<div class="relative">
-				<!-- Floating lazer client preview image (desktop only) -->
-				<!-- <div class="hidden md:block absolute -top-105 right-6 w-[340px] xl:w-[400px] animate-[heroFloat_10s_ease-in-out_infinite] will-change-transform">
-          <Image
-            id="hero-click-audio"
-            src="/image/lazer.png"
-            alt="osu!lazer preview (click to play audio)"
-            width={420}
-            height={260}
-            loading="lazy"
-            class="w-full select-none opacity-95 drop-shadow-xl transition-transform duration-300 ease-out hover:scale-105 active:scale-95 cursor-pointer"
-            style="user-select:none;-webkit-user-drag:none;"
-          />
-        </div> -->
 				<audio id="hero-audio" preload="auto">
 					<source src="/audio/welcome-to-osu.mp3" type="audio/mpeg" />
 				</audio>
@@ -89,7 +74,6 @@ const LAZER_URL = import.meta.env.PUBLIC_LAZER_URL ?? "https://lazer.g0v0.top";
 			}
 		</style>
 		<script>
-			// Click image to play audio, repeat click restarts from beginning
 			document.addEventListener("DOMContentLoaded", () => {
 				const img = document.getElementById("hero-click-audio");
 				const audio = document.getElementById("hero-audio") as HTMLAudioElement | null;
@@ -99,13 +83,9 @@ const LAZER_URL = import.meta.env.PUBLIC_LAZER_URL ?? "https://lazer.g0v0.top";
 						audio.currentTime = 0;
 						const p = audio.play();
 						if (p && typeof p.catch === "function") {
-							p.catch(() => {
-								/* ignore autoplay permission errors */
-							});
+							p.catch(() => {});
 						}
-					} catch (e) {
-						/* noop */
-					}
+					} catch (e) {}
 				});
 			});
 		</script>

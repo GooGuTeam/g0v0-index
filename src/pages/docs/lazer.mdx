@@ -1,15 +1,57 @@
 ---
-layout: ../../layouts/MDXLayout.astro
-title: lazer 客户端教程
-description: 使用 osu!lazer 客户端连接本服务的指引
+layout: ../../layouts/MDXLayoutEN.astro
+title: Lazer Client Tutorial
+description: Guide to connecting to this service using the osu!lazer client
 ---
 import Admonition from '../../components/Admonition.astro';
 
-# lazer 客户端教程
+# Guides for lazer clients
 
-本文介绍如何使用 osu!lazer 完成连接与基本功能说明。
+This article will show you how to connect to gsu! using the **osu!lazer client**.
 
-<Admonition type="warning" title="提示">
-教程施工中.osz
+## Websites and URLs
+
+Our offical website: https://g0v0.top
+Server API URL: https://lazer-api.g0v0.top
+Website for lazer users: https://lazer.g0v0.top
+
+## Ways to connect to our server
+
+There is two ways to connect to our server.
+
+### 1. Using Authlib Injector (for x86_64 platforms)
+
+This method is for users who use:
+- Windows (on x64 or x86 platforms)
+- Linux (on x64 or x86 platforms)
+- Non-Apple Silicon Macs (e.g. MacBooks before 2020)
+
+Steps:
+1. Download [LazerAuthlibInjection](https://github.com/MingxuanGame/LazerAuthlibInjection/releases/latest)
+2. Install it as a **ruleset** into osu!lazer
+3. Start the game, go to **Settings->Gamemodes**, and fill `https://lazer-api.g0v0.top` into field `Custom Server API Url`
+4. After the notification who says "API Settings have changed" appeared, restart your client, and enjoy your game!
+
+### 2. Using Our Own Custom Client (**Recommended**)
+
+This method is recommended for all users who can run osu!lazer on their platform.
+
+Steps:
+1. Download [gsu! custom Client](https://github.com/GooGuTeam/osu/releases/latest)
+2. Start the game, and open **Settings->Online**, fill `https://lazer-api.g0v0.top` into field `Custom API Server URL`.
+3. Restart your game, and enjoy yourself!
+
+## FAQ
+
+<Admonition type="info" title="Why We Recommend the Second Method？">
+Our custom client supports more platforms, is easier to config and has better compactbility.
 </Admonition>
 
+<Admonition type="tip" title="How to ensure you are connected to gsu! ?">
+Open the rank page in the client, if you see mrekk is not #1, then you are connected to the right server!
+</Admonition>
+
+<Admonition type="warning" title="Notes:">
+- Please use the newest client, otherwise it may failed to connect to the server.
+- Use third-party clients or tools at your own risk.
+</Admonition>

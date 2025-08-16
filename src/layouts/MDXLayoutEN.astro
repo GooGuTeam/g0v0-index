@@ -7,36 +7,33 @@ export interface Props {
 const { title, description } = Astro.props;
 const current = Astro.url.pathname;
 
-// 使用 react-icons
-import { FiBookOpen, FiZap } from "react-icons/fi";
-import SiteHeader from "../components/SiteHeader.astro";
-import SiteFooter from "../components/SiteFooter.astro";
-import { getRelativeLocaleUrl } from "astro:i18n";
+// Use the same react-icons as DocsLayout for consistency
+import { FiBookOpen, FiPlay, FiZap, FiServer } from "react-icons/fi";
+import SiteHeaderEN from "../components/SiteHeaderEN.astro";
+import SiteFooterEN from "../components/SiteFooterEN.astro";
 
 interface NavItem {
 	href: string;
 	label: string;
 	icon: any;
 }
-
-// 使用 getRelativeLocaleUrl 生成多语言路径
 const navItems: NavItem[] = [
-	{ href: getRelativeLocaleUrl("zh", "docs"), label: "简介", icon: FiBookOpen },
-	{ href: getRelativeLocaleUrl("zh", "docs/lazer"), label: "lazer 教程", icon: FiZap },
+	{ href: "/docs", label: "Introduction", icon: FiBookOpen },
+	{ href: "/docs/lazer", label: "lazer Guide", icon: FiZap },
 ];
 ---
 
-<html lang="zh-CN">
+<html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content={description} />
 		<link rel="icon" type="image/svg+xml" href="/image/logo.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{title} - 咕哦！</title>
+		<title>{title} - Goo!</title>
 	</head>
 	<body class="font-sans text-text bg-bg">
-		<SiteHeader />
+		<SiteHeaderEN />
 
 		<main class="mx-auto w-full px-4 sm:px-5 md:w-[min(1200px,100%-48px)] md:px-0 py-6 md:py-8">
 			<div class="block lg:flex lg:gap-6">
@@ -49,8 +46,8 @@ const navItems: NavItem[] = [
 						<div class="flex flex-col h-full">
 							<!-- Header -->
 							<div class="p-4 border-b border-[#e6eaf2] lg:border-b-0">
-								<h2 class="m-0 text-[15px] font-700 tracking-wide text-[#334155]">文档导航</h2>
-								<button id="close-sidebar" class="lg:hidden absolute top-4 right-4 text-muted hover:text-text" aria-label="关闭侧边栏">
+								<h2 class="m-0 text-[15px] font-700 tracking-wide text-[#334155]">Documentation</h2>
+								<button id="close-sidebar" class="lg:hidden absolute top-4 right-4 text-muted hover:text-text" aria-label="Close sidebar">
 									<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
 									</svg>
@@ -111,7 +108,7 @@ const navItems: NavItem[] = [
 			</div>
 		</main>
 
-		<SiteFooter />
+		<SiteFooterEN />
 
 		<script>
 			// Sidebar toggle functionality

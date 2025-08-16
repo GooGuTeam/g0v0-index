@@ -2,7 +2,6 @@
 import { FiBookOpen, FiExternalLink, FiGithub } from "react-icons/fi";
 import { FaDiscord } from "react-icons/fa";
 import { SiTencentqq } from "react-icons/si";
-import { getRelativeLocaleUrl } from "astro:i18n";
 
 interface LinkItem {
 	label: string;
@@ -16,16 +15,16 @@ interface Column {
 
 const columns: Column[] = [
 	{
-		title: "关于",
-		links: [{ label: "文档", href: getRelativeLocaleUrl("zh", "docs") }],
+		title: "About",
+		links: [{ label: "Docs", href: "/docs" }],
 	},
 	{
-		title: "教程",
-		links: [{ label: "lazer 教程", href: getRelativeLocaleUrl("zh", "docs/lazer") }],
+		title: "Guides",
+		links: [{ label: "lazer Guide", href: "/docs/lazer" }],
 	},
 	{
-		title: "资源",
-		links: [{ label: "osu! 官网", href: "https://osu.ppy.sh", external: true }],
+		title: "Resources",
+		links: [{ label: "osu! Official", href: "https://osu.ppy.sh", external: true }],
 	},
 ];
 ---
@@ -34,12 +33,13 @@ const columns: Column[] = [
 	<div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent"></div>
 	<div class="mx-auto w-[min(1200px,100%-48px)] py-10 grid gap-10 md:grid-cols-[240px,1fr]">
 		<div class="space-y-4">
-			<a href={getRelativeLocaleUrl("zh", "")} class="inline-flex items-center gap-3 no-underline text-inherit">
-				<img src="/image/logo.svg" alt="咕哦！ " class="w-10 h-10" loading="lazy" decoding="async" width="40" height="40" />
-				<span class="font-800 text-[20px]">咕哦！ </span>
+			<a href="/" class="inline-flex items-center gap-3 no-underline text-inherit">
+				<img src="/image/logo.svg" alt="Goooh! " class="w-10 h-10" loading="lazy" decoding="async" width="40" height="40" />
+				<span class="font-800 text-[20px]">gsu! </span>
 			</a>
 			<p class="text-[13px] leading-relaxed text-muted m-0 pr-4">
-				面向全模式的 osu! 服务集合，提供兼容 osu!lazer 与 osu!stable 客户端的服务器接入，并支持 RX / AP 等特性。
+				A multi-mode osu! service hub, providing server access compatible with both osu!lazer and osu!stable clients, with support for
+				features like RX / AP.
 			</p>
 			<div class="flex items-center gap-2">
 				<a

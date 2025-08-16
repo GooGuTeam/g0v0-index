@@ -1,0 +1,61 @@
+---
+layout: ../../../layouts/MDXLayout.astro
+title: lazer 客户端教程
+description: 使用 osu!lazer 客户端连接本服务的指引
+---
+import Admonition from '../../../components/Admonition.astro';
+
+# lazer 客户端教程
+
+本文将介绍如何使用 **osu!lazer 客户端** 连接咕哦！服务器，并完成基础设置。
+
+## 官网
+
+咕哦！官网：https://g0v0.top<br/>
+服务器 API 地址：https://lazer-api.g0v0.top<br/>
+网页版入口：https://lazer.g0v0.top<br/>
+
+## 连接服务器的方式
+
+您可以通过以下两种方式任选其一进行连接：
+
+### 方式一：通过 Authlib 注入器（适用于 x86_64 平台）
+
+适用范围：
+- Windows 用户
+- Linux 用户
+- 非 Apple Silicon 的 macOS 用户（即 CPU 架构为 **x86_64**）
+
+步骤：
+1. 前往下载 [LazerAuthlibInjection](https://github.com/MingxuanGame/LazerAuthlibInjection/releases)。
+2. 将其作为 **ruleset** 安装到 osu!lazer 客户端中。
+3. 打开 **设置 → 游戏模式**，在 **API Url** 一栏中填写：
+
+[https://lazer-api.g0v0.top](https://lazer-api.g0v0.top)
+
+### 方式二：使用自定义客户端（推荐）
+
+适用范围：所有用户（包括 Apple Silicon Mac）
+
+步骤：
+1. 前往下载 [咕哦！自定义客户端](https://github.com/GooGuTeam/osu/releases/latest)。
+2. 打开 **设置 → 在线**，找到 **Custom API server url**。
+3. 在输入框中填写：
+
+[https://lazer-api.g0v0.top](https://lazer-api.g0v0.top)
+
+
+## 常见问题
+
+<Admonition type="tip" title="为什么推荐方式二？">
+自定义客户端无需区分平台，配置更简单，兼容性也更好，适合大部分玩家。
+</Admonition>
+
+<Admonition type="info" title="如何确认已连接成功？">
+进入客户端主界面，尝试登录并访问排行榜或在线功能，如果一切正常，说明已成功连接咕哦！服务器。
+</Admonition>
+
+<Admonition type="warning" title="注意事项">
+- 请确保客户端版本为最新，否则可能无法兼容服务器。
+- 使用第三方工具或客户端需自行承担风险。
+</Admonition>

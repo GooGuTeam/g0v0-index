@@ -1,27 +1,24 @@
 ---
+// Global site header component
 import { getRelativeLocaleUrl } from "astro:i18n";
 import { FiBookOpen, FiZap, FiServer, FiGlobe } from "react-icons/fi";
 const current = Astro.url.pathname;
 const LAZER_URL = import.meta.env.PUBLIC_LAZER_URL ?? "https://lazer.g0v0.top";
-
-// 使用 getRelativeLocaleUrl 生成内部文档链接
-const DOCS_URL = getRelativeLocaleUrl("zh", "docs");
 ---
 
 <header class="sticky top-0 z-50 backdrop-blur bg-white/80 border-b border-[#e6eaf2] supports-[backdrop-filter]:bg-white/60">
 	<div class="mx-auto w-[min(1200px,100%-48px)] flex items-center gap-3 py-3">
-		<a href={getRelativeLocaleUrl("zh", "")} class="inline-flex items-center gap-3 no-underline text-inherit group flex-shrink-0">
-			<img src="/image/logo.svg" alt="咕哦！ " class="w-8 h-8 transition-transform group-hover:rotate-6" />
-			<span class="font-800 tracking-[0.5px] text-[18px] bg-clip-text text-transparent bg-gradient-to-r from-[#0ea5e9] to-[#6366f1]">
-				咕哦！
+		<a href="/" class="inline-flex items-center gap-3 no-underline text-inherit group flex-shrink-0">
+			<img src="/image/logo.svg" alt="Goooh! " class="w-8 h-8 transition-transform group-hover:rotate-6" />
+			<span class="font-800 tracking-[0.5px] text-[18px] bg-clip-text text-transparent bg-gradient-to-r from-[#0ea5e9] to-[#6366f1]"
+				>gsu!
 			</span>
 		</a>
-
 		{
 			current.startsWith("/docs") && (
 				<button
 					id="sidebar-toggle"
-					aria-label="打开文档导航"
+					aria-label="Open documentation navigation"
 					class="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-[#e6eaf2] bg-white shadow-sm hover:shadow transition-colors text-[#475569] hover:text-[#0f172a] focus-visible:outline-none focus-visible:ring-2 ring-primary/40"
 					type="button">
 					<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -30,13 +27,12 @@ const DOCS_URL = getRelativeLocaleUrl("zh", "docs");
 				</button>
 			)
 		}
-
 		<nav class="ml-auto inline-flex items-center gap-2 flex-shrink-0">
 			<a
-				href={DOCS_URL}
+				href="/docs"
 				class={`relative no-underline rounded-lg pl-3 pr-4 py-2 text-[14px] font-600 transition-colors outline-none focus-visible:ring-2 ring-primary/40 inline-flex items-center gap-1 ${current.startsWith("/docs") ? "bg-primary text-white shadow-sm" : "text-text hover:bg-[#f1f5f9]"}`}>
 				<FiBookOpen size={16} />
-				<span>文档</span>
+				<span>Docs</span>
 			</a>
 			<a
 				href={LAZER_URL}
@@ -46,12 +42,11 @@ const DOCS_URL = getRelativeLocaleUrl("zh", "docs");
 				<FiZap size={16} />
 				<span>lazer</span>
 			</a>
-			<!-- 语言切换按钮 -->
 			<a
-				href={getRelativeLocaleUrl("en", "")}
+				href={getRelativeLocaleUrl("zh", "")}
 				class="no-underline bg-[#f1f5f9] rounded-lg px-3 py-2 text-[14px] font-600 hover:bg-[#e2e8f0] transition-colors inline-flex items-center gap-1">
 				<FiGlobe size={16} />
-				<span>EN</span>
+				<span>ZH</span>
 			</a>
 		</nav>
 	</div>
